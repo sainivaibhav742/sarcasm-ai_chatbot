@@ -1,0 +1,129 @@
+<!-- File: templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Groq RoastBot 💥</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #111;
+      color: #eee;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #ff5e57;
+    }
+
+    #chatbox {
+      width: 100%;
+      max-width: 600px;
+      height: 400px;
+      overflow-y: auto;
+      background: #222;
+      border: 2px solid #444;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .message {
+      margin: 10px 0;
+    }
+
+    .user {
+      color: #4dd0e1;
+    }
+
+    .bot {
+      color: #ffca28;
+    }
+
+    #inputArea {
+      display: flex;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    #messageInput {
+      flex-grow: 1;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px 0 0 5px;
+      border: none;
+      outline: none;
+    }
+
+    #sendBtn {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #ff5e57;
+      color: white;
+      border: none;
+      border-radius: 0 5px 5px 0;
+      cursor: pointer;
+    }
+
+    #sendBtn:hover {
+      background-color: #e04848;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔥 Groq RoastBot</h1>
+  <div id="chatbox"></div>
+  <div id="inputArea">
+    <input type="text" id="messageInput" placeholder="Say something..." />
+    <button id="sendBtn">Send</button>
+  </div>
+
+  <script>
+    const sendBtn = document.getElementById('sendBtn');
+    const messageInput = document.getElementById('messageInput');
+    const chatbox = document.getElementById('chatbox');
+
+    function appendMessage(sender, text) {
+      const div = document.createElement('div');
+      div.classList.add('message');
+      div.classList.add(sender);
+      div.textContent = `${sender === 'user' ? 'You' : 'Bot'}: ${text}`;
+      chatbox.appendChild(div);
+      chatbox.scrollTop = chatbox.scrollHeight;
+    }
+
+    async function sendMessage() {
+      const userMsg = messageInput.value.trim();
+      if (!userMsg) return;
+
+      appendMessage('user', userMsg);
+      messageInput.value = '';
+
+      try {
+        const res = await fetch('/chat', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ message: userMsg }),
+        });
+
+        const data = await res.json();
+        appendMessage('bot', data.response);
+      } catch (err) {
+        appendMessage('bot', 'Error talking to server.');
+        console.error(err);
+      }
+    }
+
+    sendBtn.addEventListener('click', sendMessage);
+    messageInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') sendMessage();
+    });
+  </script>
+</body>
+</html>
