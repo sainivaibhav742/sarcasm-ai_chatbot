@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, render_template
-from groq_chat import chat_with_groq
+from nvidia_chat import chat_with_nvidia
 
 app = Flask(__name__)
 
@@ -13,7 +13,7 @@ def chat():
     user_message = data.get("message", "")
     if not user_message:
         return jsonify({"error": "No message provided"}), 400
-    bot_reply = chat_with_groq(user_message)
+    bot_reply = chat_with_nvidia(user_message)
     return jsonify({"response": bot_reply})
 
 if __name__ == '__main__':

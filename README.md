@@ -1,12 +1,12 @@
 # 🤖 Sarcasm AI Chatbot (SacroBot)
 
-A witty, sarcastic AI chatbot built using a fine-tuned **GPT-2 model**. SacroBot is designed to entertain users by responding with a smart blend of sarcasm and humor — mimicking the tone of a sassy, roasty friend.
+A witty, sarcastic AI chatbot built using **NVIDIA's Llama 3.1 model**. SacroBot is designed to entertain users by responding with a smart blend of sarcasm and humor — mimicking the tone of a sassy, roasty friend.
 
 ---
 
 ## 🧠 About the Project
 
-This chatbot is built on a fine-tuned GPT-2 language model trained using sarcasm-labeled datasets (e.g., Twitter, HuffPost). The chatbot is integrated into a Flask backend and optionally deployable with a frontend UI resembling ChatGPT.
+This chatbot is built using NVIDIA's Llama 3.1 model via the NVIDIA API. The chatbot is integrated into a Flask backend and optionally deployable with a frontend UI resembling ChatGPT.
 
 ---
 
@@ -14,13 +14,10 @@ This chatbot is built on a fine-tuned GPT-2 language model trained using sarcasm
 
 | Category               | Technologies / Libraries |
 |------------------------|--------------------------|
-| **Language Model**     | GPT-2 (HuggingFace Transformers) |
+| **Language Model**     | Llama 3.1 (NVIDIA API) |
 | **Framework**          | Flask |
 | **Web Frontend**       | HTML5, CSS3, JavaScript, Jinja2 |
-| **NLP**                | HuggingFace Transformers, Tokenizers |
-| **Dataset**            | Twitter Sarcasm / HuffPost Headlines |
-| **Training**           | PyTorch / TensorFlow backend |
-| **Model Storage**      | `.pt` or `.pkl` GPT-2 weights |
+| **API**                | NVIDIA API |
 | **Deployment (Optional)** | Render, Replit, Localhost |
 
 ---
@@ -30,8 +27,8 @@ This chatbot is built on a fine-tuned GPT-2 language model trained using sarcasm
 - 🎭 **Sarcastic & Roasty Responses**  
   The chatbot is trained to deliver funny, witty, and sometimes savage replies.
 
-- 🧠 **GPT-2 Based Text Generation**  
-  Uses HuggingFace's `GPT-2` model fine-tuned on sarcasm-specific text datasets.
+- 🧠 **Llama 3.1 Based Text Generation**
+  Uses NVIDIA's `Llama 3.1` model via API for generating sarcastic responses.
 
 - 🎛️ **Tone Control & Custom Prompts** *(Planned)*  
   Adjust the level of sarcasm or roasting intensity (light roast to brutal).
